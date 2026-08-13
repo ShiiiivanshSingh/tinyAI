@@ -17,8 +17,6 @@ def get_weather(city: str) -> str:
 model = ChatGoogleGenerativeAI(model="gemini-3.6-flash")
 embedder = GoogleGenerativeAIEmbeddings(model="gemini-embedding-001")
 
-# SqliteSaver.from_conn_string is a context manager; open it at module level
-# so the connection stays alive for the entire lifetime of the Flask process.
 _sqlite_cm = SqliteSaver.from_conn_string("checkpoints.db")
 checkpointer = _sqlite_cm.__enter__()
 
@@ -37,12 +35,8 @@ agent = create_react_agent(
 
 app = Flask(__name__)
 
-# tracks number of agent turns per session_id (in-memory, resets on restart)
 call_counts = {}
 
-# semantic cache: deque of (embedding_vector, question, answer)
-# global across sessions — repeated/similar questions from anyone hit it
-# collections.deque is thread-safe for append/pop and enforces maxlen in O(1)
 CACHE_SIMILARITY_THRESHOLD = 0.95
 CACHE_MAX_SIZE = 300
 SEMANTIC_CACHE: collections.deque = collections.deque(maxlen=CACHE_MAX_SIZE)
@@ -69,7 +63,6 @@ def find_cached_answer(query_vector):
 
 
 def store_in_cache(query_vector, question, answer):
-    # deque automatically drops the oldest entry once maxlen is reached
     SEMANTIC_CACHE.append((query_vector, question, answer))
 
 
@@ -109,7 +102,7 @@ def chat_stream():
 
     def generate():
         try:
-            # embedding call is cheap/separate from generation — used only to check the cache
+            # embedding call is cheap from generation 
             query_vector = embedder.embed_query(message)
             cached_answer = find_cached_answer(query_vector)
 
