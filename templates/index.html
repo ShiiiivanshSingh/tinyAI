@@ -385,7 +385,7 @@
   <div class="frame">
     <div class="titlebar">
       <span class="left">
-        <span>agent - gemini-3.6-flash</span>
+        <span id="topModelLabel">agent - gemini-3.1-flash-lite</span>
         <span class="clock" id="clock"></span>
       </span>
       <span class="right">
@@ -441,7 +441,7 @@
         // agent: label + body, no dot
         const label = document.createElement("div");
         label.className = "agent-label";
-        label.textContent = "gemini";
+        label.textContent = "thinking...";
         const body = document.createElement("div");
         body.className = "body";
         body.textContent = text;
@@ -526,7 +526,15 @@
             if (!line.startsWith("data:")) continue;
             const payload = JSON.parse(line.slice(5).trim());
 
-            if (payload.type === "tool_call") {
+            if (payload.type === "model_info") {
+              const friendlyName = payload.model.replace("gemini-3.1-flash-lite", "gemini-3.1-lite");
+              document.getElementById("topModelLabel").textContent = "agent - " + friendlyName;
+              
+              // Clear 'thinking...' and set model name (preserve cache tag if exists)
+              const cacheTag = agentLabel.querySelector(".cache-tag");
+              agentLabel.textContent = friendlyName;
+              if (cacheTag) agentLabel.appendChild(cacheTag);
+            } else if (payload.type === "tool_call") {
               agentLine.classList.remove("streaming");
               addToolCallLine(payload.name, payload.args);
               agentLine.classList.add("streaming");
