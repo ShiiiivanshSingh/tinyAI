@@ -2,7 +2,7 @@ import collections
 import json
 import uuid
 
-from flask import Flask, request, render_template, Response
+from flask import Flask, request, render_template, Response, stream_with_context
 from dotenv import load_dotenv
 from langgraph.prebuilt import create_react_agent
 from langchain_google_genai import ChatGoogleGenerativeAI, GoogleGenerativeAIEmbeddings
@@ -155,7 +155,7 @@ def chat_stream():
             yield f"data: {json.dumps({'type': 'error', 'message': str(exc)})}\n\n"
 
     return Response(
-        generate(),
+        stream_with_context(generate()),
         mimetype="text/event-stream",
         headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"},
     )
