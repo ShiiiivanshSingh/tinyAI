@@ -6,7 +6,7 @@
 [![Check out the live site](https://img.shields.io/badge/Check%20Out-Live%20Site-blue?style=for-the-badge)](https://tinyai-production.up.railway.app/)
 
 
-Hey if u are curious its a AI chat application built with **Flask, LangGraph, and Google Gemini** or to put simply its a Gemini LangGraph Chat Agent
+hii thx for visiting this repo, if u are curious about this project, its an AI chat application built with **Flask, LangGraph, and Google Gemini** or to put simply its a Gemini + LangGraph Chat Agent!! Built this to experiment with **LangGraph agents, Gemini, embeddings, caching, streaming, and persistent state** yada yada yada.
 
 <img width="800" alt="Gemini LangGraph Chat Agent" src="https://github.com/user-attachments/assets/91d81b09-aa1f-4951-bb46-191859350cd1" />
 </div>
@@ -68,7 +68,8 @@ Streaming Response
 Rate Limit → Fallback Model
 ```
 
-The project is mainly built to experiment with **LangGraph agents, Gemini, embeddings, caching, streaming, and persistent state**.
+
+Font used in the website is [Balsamiq Sans](https://fonts.google.com/specimen/Balsamiq+Sans).
 
 > [!WARNING]
 > **Be aware of Gemini API rate limits.** The primary model may hit quota limits, especially during frequent testing. The app automatically switches to the fallback model when a rate limit is detected.
