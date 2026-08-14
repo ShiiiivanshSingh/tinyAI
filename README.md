@@ -1,7 +1,7 @@
 <div align="center">
  
-# [TinyAI](https://tinyai-production.up.railway.app/)
 
+![tinyAI](https://capsule-render.vercel.app/api?type=transparent&height=100&color=gradient&text=tinyAI&animation=fadeIn&textBg=false)
 
 [![Check out the live site](https://img.shields.io/badge/Check%20Out-Live%20Site-blue?style=for-the-badge)](https://tinyai-production.up.railway.app/)
 
