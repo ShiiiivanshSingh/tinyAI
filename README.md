@@ -1,1 +1,70 @@
-no idea what i am doing, go [check out](https://tinyai-production.up.railway.app/)
+# [TinyAI](https://tinyai-production.up.railway.app/)
+
+<div align="center">
+
+[![Check out the live site](https://img.shields.io/badge/Check%20Out-Live%20Site-blue?style=for-the-badge)](https://tinyai-production.up.railway.app/)
+
+
+Hey if u are curious its a AI chat application built with **Flask, LangGraph, and Google Gemini** or to put simply its a Gemini LangGraph Chat Agent
+
+<img width="1920" height="1536" alt="972_1x_shots_so" src="https://github.com/user-attachments/assets/dc0860a1-50c9-44df-9312-4b8b85f2908d" />
+
+</div>
+
+Features:
+
+* Gemini ReAct agent with tool calling
+* Streaming responses using SSE
+* Semantic caching with Gemini embeddings
+* Automatic fallback model on rate limits
+* SQLite-based conversation checkpoints
+* Simple weather tool
+
+## if u want to build it yourself
+
+```bash
+python -m venv venv
+source venv/bin/activate
+pip install flask python-dotenv langgraph langchain-google-genai
+```
+
+Add your API key to `.env`:
+
+```env
+GOOGLE_API_KEY=your_api_key
+```
+
+## Run
+
+```bash
+python app.py
+```
+
+Runs on `http://localhost:5000`.
+
+## Models
+
+* Primary: `gemini-3.1-flash-lite`
+* Fallback: `gemini-3.6-flash`
+* Embeddings: `gemini-embedding-001`
+
+## Architecture
+
+```text
+User
+ ↓
+Semantic Cache
+ ↓
+Gemini Agent
+ ↓
+Tool Calls
+ ↓
+Streaming Response
+
+Rate Limit → Fallback Model
+```
+
+The project is mainly built to experiment with **LangGraph agents, Gemini, embeddings, caching, streaming, and persistent state**.
+
+> [!WARNING]
+> **Be aware of Gemini API rate limits.** The primary model may hit quota limits, especially during frequent testing. The app automatically switches to the fallback model when a rate limit is detected.
