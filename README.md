@@ -1,15 +1,17 @@
+<div align="center">
+ 
 # [TinyAI](https://tinyai-production.up.railway.app/)
 
-<div align="center">
 
 [![Check out the live site](https://img.shields.io/badge/Check%20Out-Live%20Site-blue?style=for-the-badge)](https://tinyai-production.up.railway.app/)
 
 
 Hey if u are curious its a AI chat application built with **Flask, LangGraph, and Google Gemini** or to put simply its a Gemini LangGraph Chat Agent
 
-<img width="1920" height="1536" alt="972_1x_shots_so" src="https://github.com/user-attachments/assets/dc0860a1-50c9-44df-9312-4b8b85f2908d" />
-
+<img width="800" alt="Gemini LangGraph Chat Agent" src="https://github.com/user-attachments/assets/91d81b09-aa1f-4951-bb46-191859350cd1" />
 </div>
+
+
 
 Features:
 
@@ -20,7 +22,9 @@ Features:
 * SQLite-based conversation checkpoints
 * Simple weather tool
 
-## if u want to build it yourself
+## u want to build it yourself ??
+
+or u can [visit this](https://tinyai-production.up.railway.app/)
 
 ```bash
 python -m venv venv
